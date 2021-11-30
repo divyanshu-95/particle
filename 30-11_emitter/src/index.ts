@@ -14,6 +14,7 @@ app.loader.add("gold-coins", "https://pixijs.io/particle-emitter/examples/images
 .add('pop', "https://pixijs.io/particle-emitter/examples/images/pop_anim.json")
 .add("bubble", "https://pixijs.io/particle-emitter/examples/images/Bubbles99.png")
 .add('snow', "https://pixijs.io/particle-emitter/examples/images/Snow100.png")
+// .add("HardRain","HardRain.png ")
 .load((l, r) => {
 
   const container = new Container();
@@ -152,6 +153,204 @@ app.loader.add("gold-coins", "https://pixijs.io/particle-emitter/examples/images
       },
     ],
   };
+  const pConfig4:particles.EmitterConfigV3={
+    "lifetime": {
+      "min": 0.81,
+      "max": 0.81
+    },
+    "frequency": 0.004,
+    "emitterLifetime": 0,
+    "maxParticles": 1000,
+    "addAtBack": false,
+    "pos": {
+      "x": 0,
+      "y": 0
+    },
+    "behaviors": [
+      {
+        "type": "alphaStatic",
+        "config": {
+          "alpha": 0.5
+        }
+      },
+      {
+        "type": "moveSpeedStatic",
+        "config": {
+          "min": 3000,
+          "max": 3000
+        }
+      },
+      {
+        "type": "scaleStatic",
+        "config": {
+          "min": 1,
+          "max": 1
+        }
+      },
+      {
+        "type": "rotationStatic",
+        "config": {
+          "min": 65,
+          "max": 65
+        }
+      },
+      {
+        "type": "textureRandom",
+        "config": {
+          textures: [
+            "snow "
+          ]
+        }
+      },
+      {
+        "type": "spawnShape",
+        "config": {
+          "type": "rect",
+          "data": {
+            "x": -600,
+            "y": -460,
+            "w": 900,
+            "h": 20
+          }
+        }
+      }
+    ]
+  }
+  const pConfig3: particles.EmitterConfigV3 = {
+    lifetime: {
+      min: 1.75,
+      max: 2.5,
+    },
+    ease: [
+      {
+        s: 0,
+        cp: 0.379,
+        e: 0.548,
+      },
+      {
+        s: 0.548,
+        cp: 0.717,
+        e: 0.676,
+      },
+      {
+        s: 0.676,
+        cp: 0.635,
+        e: 1,
+      },
+    ],
+    frequency: 0.005,
+    emitterLifetime: 0,
+    maxParticles: 500,
+    addAtBack: false,
+    pos: {
+      x: app.screen.width / 2,
+      y: app.screen.height ,
+    },
+    behaviors: [
+      {
+        type: "alpha",
+        config: {
+          alpha: {
+            list: [
+              {
+                time: 0,
+                value: 1,
+              },
+              {
+                time: 1,
+                value: 0.5,
+              },
+            ],
+          },
+        },
+      },
+      {
+        type: "moveAcceleration",
+        config: {
+          accel: {
+            x: 0,
+            y: 750,
+          },
+          minStart: 900,
+          maxStart: 1000,
+          rotate: true,
+        },
+      },
+      {
+        type: "scale",
+        config: {
+          scale: {
+            list: [
+              {
+                time: 0,
+                value: 0.25,
+              },
+              {
+                time: 1,
+                value: 0.35,
+              },
+            ],
+          },
+          minMult: 1,
+        },
+      },
+      {
+        type: "rotation",
+        config: {
+          accel: 0,
+          minSpeed: 50000,
+          maxSpeed: 700000,
+          minStart: -20,
+          maxStart: 0,
+        },
+      },
+      {
+        type: "animatedRandom",
+        config: {
+          anims: [
+            {
+              framerate: 20,
+              loop: true,
+              textures: [
+                "gold_1.png",
+                "gold_2.png",
+                "gold_3.png",
+                "gold_4.png",
+                "gold_5.png",
+              ],
+            },
+            {
+              framerate: 20,
+              loop: true,
+              textures: [
+                "gold_6.png",
+                "gold_5.png",
+                "gold_4.png",
+                "gold_3.png",
+                "gold_2.png",
+                "gold_1.png",
+              ],
+            },
+          ],
+        },
+      },
+      {
+        type: "spawnShape",
+        config: {
+          type: "torus",
+          data: {
+            x: -650,
+            y: -300,
+            radius: 5,
+            innerRadius: 0,
+            affectRotation: false,
+          },
+        },
+      },
+    ],
+  };
+  
+
   const pConfig2: particles.EmitterConfigV3 = {
     lifetime: {
       min: 1.75,
@@ -301,14 +500,22 @@ app.loader.add("gold-coins", "https://pixijs.io/particle-emitter/examples/images
   };
   const emiter = new particles.Emitter(container, pConfig);
   const emiter2 = new particles.Emitter(container, pConfig2);
-
+  const emiter3=new particles.Emitter(container,pConfig3);
+  const emiter4=new particles.Emitter(container,pConfig4);
+  // emiter4.rotate(-1);
   app.ticker.add((delta) => {
     emiter.update(delta * 0.005);
     emiter2.update(delta * 0.005);
+    emiter3.update(delta*0.005);
+    emiter4.update(delta*0.005);
+
   });
 
   window.onclick = () => {
     emiter.emit = !emiter.emit;
     emiter2.emit = !emiter2.emit;
+    emiter3.emit=!emiter.emit;
+    emiter4.emit=!emiter.emit;
+
   };
 })
