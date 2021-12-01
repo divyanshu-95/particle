@@ -14,7 +14,8 @@ app.loader.add("gold-coins", "https://pixijs.io/particle-emitter/examples/images
 .add('pop', "https://pixijs.io/particle-emitter/examples/images/pop_anim.json")
 .add("bubble", "https://pixijs.io/particle-emitter/examples/images/Bubbles99.png")
 .add('snow', "https://pixijs.io/particle-emitter/examples/images/Snow100.png")
-// .add("HardRain","HardRain.png ")
+.add('sparks',"https://pixijs.io/particle-emitter/examples/images/Sparks.png")
+.add("diamond","https://cdn-icons.flaticon.com/png/512/2789/premium/2789138.png?token=exp=1638353496~hmac=4b3accd64899b4badb8fa4d7e62c070f")
 .load((l, r) => {
 
   const container = new Container();
@@ -49,108 +50,107 @@ app.loader.add("gold-coins", "https://pixijs.io/particle-emitter/examples/images
       x: app.screen.width / 2,
       y: app.screen.height ,
     },
-    behaviors: [
+    "behaviors": [
       {
-        type: "alpha",
-        config: {
-          alpha: {
-            list: [
+        "type": "alpha",
+        "config": {
+          "alpha": {
+            "list": [
               {
-                time: 0,
-                value: 1,
+                "time": 0,
+                "value": 1
               },
               {
-                time: 1,
-                value: 0.5,
-              },
-            ],
-          },
-        },
+                "time": 1,
+                "value": 0.31
+              }
+            ]
+          }
+        }
       },
       {
-        type: "moveAcceleration",
-        config: {
-          accel: {
-            x: 0,
-            y: 750,
-          },
-          minStart: 900,
-          maxStart: 1000,
-          rotate: true,
-        },
-      },
-      {
-        type: "scale",
-        config: {
-          scale: {
-            list: [
+        "type": "moveSpeed",
+        "config": {
+          "speed": {
+            "list": [
               {
-                time: 0,
-                value: 0.25,
+                "time": 0,
+                "value": 1000
               },
               {
-                time: 1,
-                value: 0.35,
+                "time": 1,
+                "value": 200
+              }
+            ]
+          }
+        }
+      },
+      {
+        "type": "scale",
+        "config": {
+          "scale": {
+            "list": [
+              {
+                "time": 0,
+                "value": 0.5
               },
-            ],
+              {
+                "time": 1,
+                "value": 1
+              }
+            ]
           },
-          minMult: 1,
-        },
+          "minMult": 1
+        }
       },
       {
-        type: "rotation",
-        config: {
-          accel: 0,
-          minSpeed: 0,
-          maxSpeed: 200,
-          minStart: 250,
-          maxStart: 290,
-        },
+        "type": "color",
+        "config": {
+          "color": {
+            "list": [
+              {
+                "time": 0,
+                "value": "ffffff"
+              },
+              {
+                "time": 1,
+                "value": "9ff3ff"
+              }
+            ]
+          }
+        }
       },
       {
-        type: "animatedRandom",
-        config: {
-          anims: [
-            {
-              framerate: 20,
-              loop: true,
-              textures: [
-                "gold_1.png",
-                "gold_2.png",
-                "gold_3.png",
-                "gold_4.png",
-                "gold_5.png",
-                "gold_6.png",
-              ],
-            },
-            {
-              framerate: 20,
-              loop: true,
-              textures: [
-                "gold_6.png",
-                "gold_5.png",
-                "gold_4.png",
-                "gold_3.png",
-                "gold_2.png",
-                "gold_1.png",
-              ],
-            },
-          ],
-        },
+        "type": "rotation",
+        "config": {
+          "accel": 0,
+          "minSpeed": 0,
+          "maxSpeed": 20,
+          "minStart": 225,
+          "maxStart": 320
+        }
       },
       {
-        type: "spawnShape",
-        config: {
-          type: "torus",
-          data: {
-            x: 0,
-            y: 0,
-            radius: 5,
-            innerRadius: 0,
-            affectRotation: false,
-          },
-        },
+        "type": "textureRandom",
+        "config": {
+          "textures": [
+            "https://pixijs.io/particle-emitter/examples/images/Sparks.png"
+          ]
+        }
       },
+      {
+        "type": "spawnShape",
+        "config": {
+          "type": "torus",
+          "data": {
+            "x": 0,
+            "y": 0,
+            "radius": 0,
+            "innerRadius": 0,
+            "affectRotation": false
+          }
+        }
+      }
     ],
   };
   const pConfig4:particles.EmitterConfigV3={
@@ -158,7 +158,7 @@ app.loader.add("gold-coins", "https://pixijs.io/particle-emitter/examples/images
       "min": 0.81,
       "max": 0.81
     },
-    "frequency": 0.004,
+    "frequency": 0.04,
     "emitterLifetime": 0,
     "maxParticles": 1000,
     "addAtBack": false,
@@ -197,8 +197,9 @@ app.loader.add("gold-coins", "https://pixijs.io/particle-emitter/examples/images
       {
         "type": "textureRandom",
         "config": {
-          textures: [
-            "snow "
+          "textures": [
+            "snow",
+            "snow"
           ]
         }
       },
@@ -209,7 +210,7 @@ app.loader.add("gold-coins", "https://pixijs.io/particle-emitter/examples/images
           "data": {
             "x": -600,
             "y": -460,
-            "w": 900,
+            "w": 1000,
             "h": 20
           }
         }
@@ -238,7 +239,7 @@ app.loader.add("gold-coins", "https://pixijs.io/particle-emitter/examples/images
         e: 1,
       },
     ],
-    frequency: 0.005,
+    frequency: 0.05,
     emitterLifetime: 0,
     maxParticles: 500,
     addAtBack: false,
@@ -312,23 +313,14 @@ app.loader.add("gold-coins", "https://pixijs.io/particle-emitter/examples/images
               framerate: 20,
               loop: true,
               textures: [
-                "gold_1.png",
-                "gold_2.png",
-                "gold_3.png",
-                "gold_4.png",
-                "gold_5.png",
+                "https://cdn-icons.flaticon.com/png/512/2789/premium/2789138.png?token=exp=1638353496~hmac=4b3accd64899b4badb8fa4d7e62c070f",
               ],
             },
             {
               framerate: 20,
               loop: true,
               textures: [
-                "gold_6.png",
-                "gold_5.png",
-                "gold_4.png",
-                "gold_3.png",
-                "gold_2.png",
-                "gold_1.png",
+                "https://cdn-icons.flaticon.com/png/512/2789/premium/2789138.png?token=exp=1638353496~hmac=4b3accd64899b4badb8fa4d7e62c070f",
               ],
             },
           ],
@@ -502,7 +494,11 @@ app.loader.add("gold-coins", "https://pixijs.io/particle-emitter/examples/images
   const emiter2 = new particles.Emitter(container, pConfig2);
   const emiter3=new particles.Emitter(container,pConfig3);
   const emiter4=new particles.Emitter(container,pConfig4);
-  // emiter4.rotate(-1);
+  // emiter4.rotate(90);
+  console.log(emiter4);
+  
+  
+  // emiter3.rotate(2);
   app.ticker.add((delta) => {
     emiter.update(delta * 0.005);
     emiter2.update(delta * 0.005);
