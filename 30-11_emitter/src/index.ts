@@ -239,7 +239,7 @@ app.loader.add("gold-coins", "https://pixijs.io/particle-emitter/examples/images
         e: 1,
       },
     ],
-    frequency: 0.05,
+    frequency: 0.09,
     emitterLifetime: 0,
     maxParticles: 500,
     addAtBack: false,
