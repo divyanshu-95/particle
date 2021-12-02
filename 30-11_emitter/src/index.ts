@@ -1,6 +1,7 @@
 import {Application, ParticleContainer, Container} from "pixi.js"
 import * as particles from "@pixi/particle-emitter"
 
+
 const app = new Application({
     width: 1300,
     height: 600,
@@ -15,11 +16,12 @@ app.loader.add("gold-coins", "https://pixijs.io/particle-emitter/examples/images
 .add("bubble", "https://pixijs.io/particle-emitter/examples/images/Bubbles99.png")
 .add('snow', "https://pixijs.io/particle-emitter/examples/images/Snow100.png")
 .add('sparks',"https://pixijs.io/particle-emitter/examples/images/Sparks.png")
-.add("diamond","https://cdn-icons.flaticon.com/png/512/2789/premium/2789138.png?token=exp=1638353496~hmac=4b3accd64899b4badb8fa4d7e62c070f")
+.add("diamond","https://cdn-icons.flaticon.com/png/512/3109/premium/3109989.png?token=exp=1638432694~hmac=8dc8d046eb9d0a4cb29e02a2e6ddfe5b")
 .load((l, r) => {
 
   const container = new Container();
   app.stage.addChild(container);
+  //bottom to top
   const pConfig: particles.EmitterConfigV3 = {
     lifetime: {
       min: 1.75,
@@ -153,6 +155,7 @@ app.loader.add("gold-coins", "https://pixijs.io/particle-emitter/examples/images
       }
     ],
   };
+  //top to bottom
   const pConfig4:particles.EmitterConfigV3={
     "lifetime": {
       "min": 0.81,
@@ -313,14 +316,14 @@ app.loader.add("gold-coins", "https://pixijs.io/particle-emitter/examples/images
               framerate: 20,
               loop: true,
               textures: [
-                "https://cdn-icons.flaticon.com/png/512/2789/premium/2789138.png?token=exp=1638353496~hmac=4b3accd64899b4badb8fa4d7e62c070f",
+                "diamond",
               ],
             },
             {
               framerate: 20,
               loop: true,
               textures: [
-                "https://cdn-icons.flaticon.com/png/512/2789/premium/2789138.png?token=exp=1638353496~hmac=4b3accd64899b4badb8fa4d7e62c070f",
+                "diamond",
               ],
             },
           ],
@@ -341,8 +344,6 @@ app.loader.add("gold-coins", "https://pixijs.io/particle-emitter/examples/images
       },
     ],
   };
-  
-
   const pConfig2: particles.EmitterConfigV3 = {
     lifetime: {
       min: 1.75,
@@ -456,6 +457,7 @@ app.loader.add("gold-coins", "https://pixijs.io/particle-emitter/examples/images
                 "Bubbles99.png",
                 "Bubbles99.png",
                 "Bubbles99.png",
+                "fountain.png",
                 "Bubbles99.png",
                 "Bubbles99.png",
                 "Bubbles99.png",
@@ -495,15 +497,15 @@ app.loader.add("gold-coins", "https://pixijs.io/particle-emitter/examples/images
   const emiter3=new particles.Emitter(container,pConfig3);
   const emiter4=new particles.Emitter(container,pConfig4);
   // emiter4.rotate(90);
-  console.log(emiter4);
+  // console.log(emiter4);
   
   
   // emiter3.rotate(2);
   app.ticker.add((delta) => {
-    emiter.update(delta * 0.005);
+    emiter.update(delta  * 0.005);
     emiter2.update(delta * 0.005);
-    emiter3.update(delta*0.005);
-    emiter4.update(delta*0.005);
+    emiter3.update(delta * 0.005);
+    emiter4.update(delta * 0.005);
 
   });
 
@@ -512,6 +514,5 @@ app.loader.add("gold-coins", "https://pixijs.io/particle-emitter/examples/images
     emiter2.emit = !emiter2.emit;
     emiter3.emit=!emiter.emit;
     emiter4.emit=!emiter.emit;
-
   };
 })
