@@ -1,11 +1,10 @@
 import {Application, ParticleContainer, Container} from "pixi.js"
 import * as particles from "@pixi/particle-emitter"
-
-
 const app = new Application({
     width: 1300,
     height: 600,
     antialias: true,
+
     resolution:1
 })
 
@@ -499,7 +498,10 @@ app.loader.add("gold-coins", "https://pixijs.io/particle-emitter/examples/images
   // emiter4.rotate(90);
   // console.log(emiter4);
   
-  
+  // emiter.emit=false;
+  // emiter2.emit=false;
+  // emiter3.emit=false;
+  // emiter4.emit=false;
   // emiter3.rotate(2);
   app.ticker.add((delta) => {
     emiter.update(delta  * 0.005);
@@ -510,9 +512,9 @@ app.loader.add("gold-coins", "https://pixijs.io/particle-emitter/examples/images
   });
 
   window.onclick = () => {
-    emiter.emit = !emiter.emit;
-    emiter2.emit = !emiter2.emit;
-    emiter3.emit=!emiter.emit;
-    emiter4.emit=!emiter.emit;
+    emiter.emit = false;
+    emiter2.emit = false;
+    emiter3.emit=false;
+    emiter4.emit=false;
   };
 })
