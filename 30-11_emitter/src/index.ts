@@ -1,5 +1,5 @@
-import {Application, ParticleContainer, Container} from "pixi.js"
-import * as particles from "@pixi/particle-emitter"
+import {Application, ParticleContainer, Container} from "pixi.js";
+import * as particles from "@pixi/particle-emitter";
 const app = new Application({
     width: 1300,
     height: 600,
